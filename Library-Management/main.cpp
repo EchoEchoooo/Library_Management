@@ -55,7 +55,7 @@ int main() {
                 cout << "Exiting the program." << endl;
                 break;
             default:
-                cout << "Invalid choice. Please enter a valid option." << endl;
+                cout << "Invalid choice" << endl;
         }
     } while (choice != 5);
 
