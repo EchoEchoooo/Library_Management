@@ -1,4 +1,4 @@
-# Install script for directory: E:/Library-Management
+# Install script for directory: E:/GitKraken/Library_Management/Library-Management
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -45,5 +45,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "E:/Library-Management/cmake-build-debug/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "E:/GitKraken/Library_Management/Library-Management/cmake-build-debug/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")
