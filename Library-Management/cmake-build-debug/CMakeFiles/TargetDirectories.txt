@@ -1,3 +1,3 @@
-E:/Library-Management/cmake-build-debug/CMakeFiles/Library_Management.dir
-E:/Library-Management/cmake-build-debug/CMakeFiles/edit_cache.dir
-E:/Library-Management/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+C:/Users/Chairo/CLionProjects/Library_Management/Library-Management/cmake-build-debug/CMakeFiles/Library_Management.dir
+C:/Users/Chairo/CLionProjects/Library_Management/Library-Management/cmake-build-debug/CMakeFiles/edit_cache.dir
+C:/Users/Chairo/CLionProjects/Library_Management/Library-Management/cmake-build-debug/CMakeFiles/rebuild_cache.dir
