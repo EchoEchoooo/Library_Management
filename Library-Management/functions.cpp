@@ -65,3 +65,18 @@ void User::displayAllUsers() {
         }
     }
 }
+
+bool User::adminLogin() {
+    string username, password;
+    cout << "\nEnter username: ";
+    cin >> username;
+    cout << "Enter password: ";
+    cin >> password;
+
+    //default admin username and password is admin and admin
+    if (username == "admin" && password == "admin") {
+        return true;
+    }
+
+    return false;
+}
