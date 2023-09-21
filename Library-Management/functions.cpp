@@ -55,6 +55,23 @@ void User::addUser(string username, string password, bool isAdmin) {
     usersList.push_back(users);
 }
 
+void User::deleteUser(string username) {
+    if (usersList.empty())
+        exit(1);
+
+    else {
+        for (auto i = usersList.begin(); i != usersList.end(); ++i) {
+            if (i->username == username) {  //login when user is admin
+                usersList.erase(i);
+                cout << endl << username << " has been deleted\n";
+                break;
+            }
+
+            else {}//do something
+        }
+    }
+}
+
 void User::displayAllUsers() {
     if (usersList.empty())
         exit(1);
@@ -66,17 +83,35 @@ void User::displayAllUsers() {
     }
 }
 
-bool User::adminLogin() {
-    string username, password;
-    cout << "\nEnter username: ";
-    cin >> username;
-    cout << "Enter password: ";
-    cin >> password;
+bool User::userLogin(string username, string password) {
+    if (usersList.empty())
+        exit(1);
 
-    //default admin username and password is admin and admin
-    if (username == "admin" && password == "admin") {
-        return true;
+    else {
+        for (auto & i : usersList) {
+            if (i.username == username && i.password == password) { //login when user is admin
+                return true;
+            }
+
+            else
+                return false;
+        }
     }
+}
 
-    return false;
+
+bool User::adminLogin(string username, string password) {
+    if (usersList.empty())
+        exit(1);
+
+    else {
+        for (auto & i : usersList) {
+            if (i.username == username && i.password == password && i.isAdmin) { //login when user is admin
+                return true;
+            }
+
+            else
+                return false;
+        }
+    }
 }

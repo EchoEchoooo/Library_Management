@@ -31,13 +31,14 @@ protected:
 public:
     void serializeUsers();
     void deserializeUsers();
-    void login(string username, string password);
-    bool adminLogin(); //for temporary use
+    bool userLogin(string username, string password);
+    bool adminLogin(string username, string password); //for temporary use
     bool userExists(string username);
     void addUser(string username, string password, bool isAdmin);
     void displayAnalytics();
     void displayAllUsers();
     void searchUser(string username);
+    void deleteUser(string username);
     void modifyUser(string username, string password);
 };
 

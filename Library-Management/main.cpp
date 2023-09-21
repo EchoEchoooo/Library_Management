@@ -61,11 +61,16 @@ int main()
             }
                 break;
             case '2':
-                if (user.adminLogin()) {
+                cout << "Enter Username: ";
+                cin >> username;
+                cout << "Enter Password: ";
+                cin >> password;
+
+                if (user.adminLogin(username, password)) {
                     cout << "\n\tAdmin login successful.\n";
                     int adminChoice;
                     do {
-                        //system("CLS");
+                        //2system("CLS");
                         cout << "\n\n";
                         cout << setw(50) << " Admin Menu";
                         cout << "\n\n\t1. Add books";
@@ -93,13 +98,18 @@ int main()
                                 cin >> username;
                                 cout << "Enter Password: ";
                                 cin >> password;
-                                user.addUser(username, password, 0);
+                                cout << "Will the user be an admin? 1/0: ";
+                                cin >> isAdmin;
+                                user.addUser(username, password, isAdmin);
                                 user.serializeUsers();
                                 system("pause");
                                 break;
                             case 6: //modifyStudentAccount();
                                 break;
-                            case 7: //deleteStudentAccount();
+                            case 7:
+                                cout << "Enter Username: ";
+                                cin >> username;
+                                user.deleteUser(username);
                                 break;
                             case 8: user.displayAllUsers();
                                 break;
