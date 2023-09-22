@@ -95,41 +95,28 @@ void Admin::deleteAdmin(string username, string password) {
 }
 
 void Admin::searchUser(string username) {
-    if (usersList.empty())
+    if (adminsList.empty())
         cout << "There are no users\n";
 
     else {
-        for (auto & i : usersList) {
+        for (auto & i : adminsList) {
             if (i.username == username) {
                 //display all user details
                 break;
             }
         }
 
-        /*for (auto & i : adminsList) {
-            if (i.username == username) {
-
-                break;
-            }
-        }*/
     }
 }
 
 void Admin::displayAllUsers() { //display all the users in the vector
-    if (usersList.empty())
+    if (adminsList.empty())
         exit(1);
 
     else {
-        for (auto & i : usersList) {
+        for (auto & i : adminsList) {
             cout << i.username << " | " << i.password << " | " << i.contactNo << endl;
         }
-
-        /*for (auto & i : adminsList) {
-            if (i.username == username) {
-                cout << i.username << " | " << i.password << " | " << i.contactNo << endl;
-                break;
-            }
-        }*/
     }
 }
 

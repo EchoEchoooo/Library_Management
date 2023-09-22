@@ -13,6 +13,7 @@ int main()
     Admin admin;
 
     user.deserializeUsers();
+    admin.deserializeUsers();
     string username, password;
     int contactNo;
 
@@ -111,7 +112,7 @@ int main()
                                 cout << "Enter account username to modifyL: ";
                                 cin >> username;
 
-                                admin.modifyUser(username);
+                                user.modifyUser(username);
                                 break;
                             case 7:
                                 cout << "Enter Username: ";
@@ -119,7 +120,7 @@ int main()
                                 admin.deleteUser(username);
                                 break;
                             case 8:
-                                admin.displayAllUsers();
+                                user.displayAllUsers();
                                 break;
                             case 9:
                                 break;

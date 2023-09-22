@@ -31,8 +31,11 @@ public:
 
     void addUser(string username, string password, int contactNo);
     void modifyUser(string username);
+    void deleteUser(string username);
+    void searchUser(string username);
 
     //void displayAnalytics();
+    void displayAllUsers();
 
     bool loginUser(string username, string password);
     //bool userExists(string username);
