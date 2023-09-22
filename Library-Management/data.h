@@ -31,8 +31,8 @@ protected:
 public:
     void serializeUsers();
     void deserializeUsers();
-    bool userLogin(string username, string password);
-    bool adminLogin(string username, string password); //for temporary use
+    bool loginUser(string username, string password);
+    //bool adminLogin(string username, string password); //for temporary use
     bool userExists(string username);
     void addUser(string username, string password, bool isAdmin);
     //void displayAnalytics();
@@ -40,6 +40,12 @@ public:
     void searchUser(string username);
     void deleteUser(string username);
     void modifyUser(string username);
+};
+
+class Admin: public User{
+public:
+    bool loginUser(string username, string password);
+
 };
 
 class Book: public User {

@@ -1,0 +1,39 @@
+//
+// Created by Chairo on 9/22/2023.
+//
+
+#ifndef LIBRARY_MANAGEMENT_BOOK_H
+#define LIBRARY_MANAGEMENT_BOOK_H
+
+#include <vector>
+#include <string>
+#include "User.h"
+using namespace std;
+
+class Book: public User {
+private:
+    struct Books {
+        string title;
+        string author;
+        long int ISBN;
+        int copies;
+    };
+    vector<Books> booksList;
+
+public:
+    void serializeBooks();
+    void deserializeBooks();
+
+    void addBook(string title, string author, long int ISBN, int copies);
+    void deleteBook(long int ISBN);
+    void modifyBook(long int ISBN);
+    void searchBook();
+
+    bool bookIsAvailable(long int ISBN);
+    void displayAllBooks();
+
+    void borrowBook(string username, long int ISBN);
+    void returnBook(string username, long int ISBN);
+};
+
+#endif //LIBRARY_MANAGEMENT_BOOK_H

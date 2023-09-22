@@ -2,16 +2,20 @@
 #include <vector>
 #include <string>
 #include <iomanip>
-#include "data.h"
+#include "headers/User.h"
+#include "headers/Book.h"
 
 using namespace std;
 
 int main()
 {
     User user;
+    Admin admin;
+
     user.deserializeUsers();
     string username, password;
-    bool isAdmin;
+    int contactNo;
+
     char ch;
 
     do {
@@ -65,7 +69,7 @@ int main()
                 cout << "Enter Password: ";
                 cin >> password;
 
-                if (user.adminLogin(username, password)) {
+                if (admin.loginUser(username, password)) {
                     cout << "\n\tAdmin login successful.\n";
                     int adminChoice;
                     do {
@@ -97,9 +101,9 @@ int main()
                                 cin >> username;
                                 cout << "Enter Password: ";
                                 cin >> password;
-                                cout << "Will the user be an admin? 1/0: ";
-                                cin >> isAdmin;
-                                user.addUser(username, password, isAdmin);
+                                cout << "Enter Contact No: ";
+                                cin >> contactNo;
+                                user.addUser(username, password, contactNo);
                                 user.serializeUsers();
                                 system("pause");
                                 break;
@@ -107,15 +111,15 @@ int main()
                                 cout << "Enter account username to modifyL: ";
                                 cin >> username;
 
-                                user.modifyUser(username);
+                                admin.modifyUser(username);
                                 break;
                             case 7:
                                 cout << "Enter Username: ";
                                 cin >> username;
-                                user.deleteUser(username);
+                                admin.deleteUser(username);
                                 break;
                             case 8:
-                                user.displayAllUsers();
+                                admin.displayAllUsers();
                                 break;
                             case 9:
                                 break;
