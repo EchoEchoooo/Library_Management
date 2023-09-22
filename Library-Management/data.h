@@ -35,11 +35,11 @@ public:
     bool adminLogin(string username, string password); //for temporary use
     bool userExists(string username);
     void addUser(string username, string password, bool isAdmin);
-    void displayAnalytics();
+    //void displayAnalytics();
     void displayAllUsers();
     void searchUser(string username);
     void deleteUser(string username);
-    void modifyUser(string username, string password);
+    void modifyUser(string username);
 };
 
 class Book: public User {

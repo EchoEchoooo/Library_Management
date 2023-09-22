@@ -9,7 +9,6 @@ using namespace std;
 int main()
 {
     User user;
-
     user.deserializeUsers();
     string username, password;
     bool isAdmin;
@@ -104,14 +103,19 @@ int main()
                                 user.serializeUsers();
                                 system("pause");
                                 break;
-                            case 6: //modifyStudentAccount();
+                            case 6:
+                                cout << "Enter account username to modifyL: ";
+                                cin >> username;
+
+                                user.modifyUser(username);
                                 break;
                             case 7:
                                 cout << "Enter Username: ";
                                 cin >> username;
                                 user.deleteUser(username);
                                 break;
-                            case 8: user.displayAllUsers();
+                            case 8:
+                                user.displayAllUsers();
                                 break;
                             case 9:
                                 break;

@@ -45,7 +45,7 @@ void User::deserializeUsers() { // Read from users text file
     usersFile.close();
 }
 
-void User::addUser(string username, string password, bool isAdmin) {
+void User::addUser(string username, string password, bool isAdmin) { //adds a user to the user vector
     Users users;
 
     users.username = username;
@@ -72,7 +72,70 @@ void User::deleteUser(string username) {
     }
 }
 
-void User::displayAllUsers() {
+void User::searchUser(string username) {
+    if (usersList.empty())
+        cout << "There are no users\n";
+
+    else {
+        for (auto & i : usersList) {
+            if (i.username == username) {
+                //display all user details
+                break;
+            }
+        }
+    }
+}
+
+void User::modifyUser(string username) {
+    string currentUser, password, newUsername, newPassword;
+
+    int ch;
+    cout << "\n\t1. Change Username: ";
+    cout << "\n\t2. Change Password: ";
+    cin >> ch;
+
+    switch(ch) {
+        case 1:
+            cout << "Enter New Username: ";
+            cin >> newUsername;
+
+            for (auto & i : usersList) {
+                if (i.username == username) {
+                    i.username = newUsername;
+
+                    cout << endl << username << " has been changed to " << newUsername << endl;
+                    break;
+                }
+            }
+
+            break;
+
+        case 2:
+            cout << "Enter Current Password: ";
+            cin >> password;
+            cout << "Enter New Password: ";
+            cin >> newPassword;
+
+            for (auto & i : usersList) {
+                if (i.username == username && i.password == password)  {
+                    i.password = newPassword;
+
+                    cout << "\nPassword changed successfully\n";
+                    break;
+                }
+
+                else
+                    cout << endl << "Incorrect password, please try again\n";
+            }
+
+            break;
+
+        default:
+            break;
+    }
+}
+
+void User::displayAllUsers() { //display all the users in the vector
     if (usersList.empty())
         exit(1);
 
