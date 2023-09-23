@@ -15,12 +15,18 @@ private:
     struct Books {
         string title;
         string author;
-        long int ISBN;
+        string ISBN;
         int copies;
+
     };
-    vector<Books> booksList;
+
+    vector<Books> bookList;
 
 public:
+
+
+//    void initializeBooks(vector<Book> &library);
+
     void serializeBooks();
     void deserializeBooks();
 
@@ -34,6 +40,8 @@ public:
 
     void borrowBook(string username, long int ISBN);
     void returnBook(string username, long int ISBN);
+
+    void addBook(string title, string author, string isbn, int copies);
 };
 
 #endif //LIBRARY_MANAGEMENT_BOOK_H
