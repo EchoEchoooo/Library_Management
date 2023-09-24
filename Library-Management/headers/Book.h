@@ -31,8 +31,8 @@ public:
     void deserializeBooks();
 
     void addBook(string title, string author, long int ISBN, int copies);
-    void deleteBook(long int ISBN);
-    void modifyBook(long int ISBN);
+    void deleteBook(string ISBN);
+    void modifyBook(string ISBN);
     void searchBook();
 
     bool bookIsAvailable(long int ISBN);

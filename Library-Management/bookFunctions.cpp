@@ -81,6 +81,16 @@ void Book::displayAllBooks() { //display all the users in the vector
     }
 }
 
+void Book::deleteBook(string isbn) { //delete a book from the vector
+    for (auto it = bookList.begin(); it != bookList.end(); ++it) {
+        if (it->ISBN == isbn) {
+            bookList.erase(it);
+            cout << "Book with ISBN " << isbn << " has been deleted." << endl;
+            return;
+        }
+    }
+    cout << "Book with ISBN " << isbn << " not found." << endl;
+}
 
 
 
