@@ -21,11 +21,13 @@ int main()
     string title, author, isbn;
     int copies;
 
-    //User variables
+
     string username, password;
     int contactNo;
 
     char ch;
+
+
 
     do {
         system("CLS");
@@ -38,6 +40,39 @@ int main()
         cin >> ch;
         switch (ch) {
             case '1':
+            {
+                /*int studentChoice;
+                do {
+                    system("CLS");
+                    cout << "\n\n";
+                    cout << setw(50) << " Student Menu";
+                    cout << "\n\n\t1. Login";
+                    cout << "\n\n\t2. Register";
+                    cout << "\n\n\t3. Back to main menu";
+                    cout << "\n\n\tChoose an option: ";
+                    cin >> studentChoice;
+                    switch (studentChoice) {
+                        case 1:
+                            if (studentLogin()) {
+                                cout << "\n\tStudent login successful.\n";
+
+                            } else {
+                                cout << "\n\tStudent login failed.\n";
+                            }
+                            system("pause");
+                            break;
+                        case 2:
+                            registerAccount();
+                            system("pause");
+                            break;
+                        case 3:
+                            break;
+                        default:
+                            cout << "\n\tInvalid Choice! ";
+                            system("pause");
+                    }
+                } while (studentChoice != 3);*/
+            }
                 break;
             case '2':
                 cout << "Enter Username: ";
@@ -86,10 +121,9 @@ int main()
                                 cout << "hehe";
                                 break;
                             case 3: //deleteBook();
-                                cout << "Enter ISBN of the book to delete: ";
+                                cout << "Enter ISBN: ";
                                 cin >> isbn;
                                 book.deleteBook(isbn);
-                                book.serializeBooks();
                                 break;
                             case 4:
                                 book.displayAllBooks();
