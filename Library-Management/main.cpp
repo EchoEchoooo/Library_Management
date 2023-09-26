@@ -117,10 +117,13 @@ int main()
                                 book.addBook(title,author,isbn,copies);
                                 book.serializeBooks();
                                 break;
-                            case 2: //modifyBook();
-                                cout << "hehe";
+                            case 2: // modifyBook
+                                cout << "Enter ISBN of the book to modify: ";
+                                cin >> isbn;
+                                book.modifyBook(isbn);
+                                book.serializeBooks();
                                 break;
-                            case 3: //deleteBook();
+                            case 3: //deleteBook
                                 cout << "Enter ISBN: ";
                                 cin >> isbn;
                                 book.deleteBook(isbn);

@@ -32,7 +32,7 @@ public:
 
     void addBook(string title, string author, long int ISBN, int copies);
     void deleteBook(string isbn);
-    void modifyBook(string ISBN);
+    void modifyBook(string isbn);
     void searchBook();
 
     bool bookIsAvailable(long int ISBN);

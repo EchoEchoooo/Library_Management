@@ -99,5 +99,44 @@ void Book::deleteBook(string isbn) {
     }
 }
 
+void Book::modifyBook(string isbn) {
+    if (bookList.empty()) {
+        cout << "\n\tThere are no books to modify.\n";
+        return;
+    }
+
+    bool found = false;
+    for (auto &book : bookList) {
+        if (book.ISBN == isbn) {
+            found = true;
+            cout << "\n\tBook found. Please enter the new information:\n";
+
+            string newTitle, newAuthor;
+            int newCopies;
+
+            cout << "\n\tEnter new title: ";
+            cin.ignore();
+            getline(cin, newTitle);
+
+            cout << "\n\tEnter new author: ";
+            getline(cin, newAuthor);
+
+            cout << "\n\tEnter new number of copies: ";
+            cin >> newCopies;
+
+            book.title = newTitle;
+            book.author = newAuthor;
+            book.copies = newCopies;
+
+            cout << "\n\tBook information updated successfully.\n";
+            break;
+        }
+    }
+
+    if (!found) {
+        cout << "\n\tBook with ISBN " << isbn << " not found.\n";
+    }
+}
+
 
 
