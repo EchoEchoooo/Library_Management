@@ -1,0 +1,17 @@
+# ninja log v5
+5	624	7170760207233437	CMakeFiles/Library_Management.dir/functions.cpp.obj	55bed0b4eecc394e
+6	556	7170086823738937	CMakeFiles/Library_Management.dir/main.cpp.obj	2fa9872a7e35a41a
+623	756	7170087745593474	Library_Management.exe	7e5025b7586b324a
+1	116	7170781199246021	build.ninja	4f4c5933048874ba
+17	797	7170874229356112	CMakeFiles/Library_Management.dir/bookFunctions.cpp.obj	aa0f7f7db12807b0
+9	939	7170874230752375	CMakeFiles/Library_Management.dir/userFunctions.cpp.obj	ebc27ff867e194f
+4	945	7170874230832169	CMakeFiles/Library_Management.dir/main.cpp.obj	2fa9872a7e35a41a
+13	962	7170874231001720	CMakeFiles/Library_Management.dir/adminFunctions.cpp.obj	35f8601f6b1d9ad3
+962	1123	7170874232567528	Library_Management.exe	60a73b1f78584f95
+3	533	7170875889553153	CMakeFiles/Library_Management.dir/main.cpp.obj	2fa9872a7e35a41a
+533	644	7170875890630269	Library_Management.exe	60a73b1f78584f95
+10	734	7170879639325334	CMakeFiles/Library_Management.dir/bookFunctions.cpp.obj	aa0f7f7db12807b0
+7	835	7170879640332638	CMakeFiles/Library_Management.dir/main.cpp.obj	2fa9872a7e35a41a
+3	873	7170879640711628	CMakeFiles/Library_Management.dir/userFunctions.cpp.obj	ebc27ff867e194f
+12	878	7170879640761499	CMakeFiles/Library_Management.dir/adminFunctions.cpp.obj	35f8601f6b1d9ad3
+879	1013	7170879642087934	Library_Management.exe	60a73b1f78584f95
