@@ -5,6 +5,7 @@
 #include "headers/User.h"
 #include "headers/Book.h"
 #include <iostream>
+#include <utility>
 #include <vector>
 #include <fstream>
 #include <string>
@@ -63,9 +64,9 @@ void Book::addBook(string title, string author, string isbn, int copies) {
     Books book; // declare an object book
 
     // pass the values inside the objects members
-    book.title = title;
-    book.author = author;
-    book.ISBN = isbn;
+    book.title = std::move(title);
+    book.author = std::move(author);
+    book.ISBN = std::move(isbn);
     book.copies = copies;
 
     // push contents inside the vector "bookList"
@@ -85,7 +86,7 @@ void Book::displayAllBooks() { //display all the users in the vector
     }
 }
 
-void Book::deleteBook(string isbn) {
+void Book::deleteBook(const string& isbn) {
     if (bookList.empty())
         cout << "\n\tThere are no books\n";
 
@@ -103,7 +104,7 @@ void Book::deleteBook(string isbn) {
     }
 }
 
-void Book::modifyBook(string isbn) {
+void Book::modifyBook(const string& isbn) {
     if (bookList.empty()) {
         cout << "\n\tThere are no books to modify.\n";
         return;
@@ -206,7 +207,6 @@ void Book::borrowBook(const string& isbn, int copies, const string& username) {
             // Calculate the return date (2 weeks from the borrow date)
             localTime->tm_mday += 14; // Add 14 days
             mktime(localTime); // Normalize the date
-
             strftime(returnDateStr, sizeof(returnDateStr), "%Y-%m-%d", localTime);
 
             borrow.borrowDate = borrowDateStr;
@@ -220,21 +220,73 @@ void Book::borrowBook(const string& isbn, int copies, const string& username) {
             cin >> ch;
 
             if (ch == 'y' || ch == 'Y') {
-                ofstream borrowBookFile("borrowedBooks.txt", ios::app);
+                // Update the number of copies in the Library.txt file
+                ifstream libraryFile("Library.txt");
+                ofstream updatedLibraryFile("Library_updated.txt");
+                string line;
+                string title, author;
 
-                if (borrowBookFile.is_open()) {
-                    borrowBookFile << borrow.username << "|" << borrow.ISBN << "|" << borrow.borrowDate << "|" << borrow.returnDate << endl;
+                while (getline(libraryFile, line)) {
+                    size_t pos = line.find('|');
+
+                    if (pos != string::npos) {
+                        title = line.substr(0, pos);
+                        line.erase(0, pos + 1); // Remove  '|'
+
+                        pos = line.find('|');
+
+                        if (pos != string::npos) {
+                            author = line.substr(0, pos);
+                            line.erase(0, pos + 1); // Remove  '|'
+
+                            // Parse ISBN from the remaining line
+                            pos = line.find('|');
+                            if (pos != string::npos) {
+                                string bookIsbn = line.substr(0, pos);
+                                line.erase(0, pos + 1); // Remove  '|'
+
+                                // Parse copies
+                                copies = stoi(line);
+
+                                if (bookIsbn == isbn) {
+                                    copies--;
+                                    if (copies < 0) {
+                                        copies   = 0; // Ensure non-negative copies
+                                    }
+                                }
+
+                                // Modify the line with updated copies and write to the updated file
+                                updatedLibraryFile << title << "|" << author << "|" << bookIsbn << "|" << copies << endl;
+                            }
+                        }
+                    }
                 }
 
-                borrowedBooksList.push_back(borrow);
-                borrowBookFile.close();
-                cout << "Successfully Borrowed a Book!\n\n";
+                libraryFile.close();
+                updatedLibraryFile.close();
+                // Rename the updated file to replace the original Library.txt
+                if (remove("Library.txt") == 0 && rename("Library_updated.txt", "Library.txt") == 0) {
+                    // Successfully updated the Library.txt file
+                    ofstream borrowBookFile("borrowedBooks.txt", ios::app);
+
+                    if (borrowBookFile.is_open()) {
+                        borrowBookFile << borrow.username << "|" << borrow.ISBN << "|" << borrow.borrowDate << "|" << borrow.returnDate << endl;
+                    }
+
+                    borrowedBooksList.push_back(borrow);
+                    borrowBookFile.close();
+
+                    cout << "Successfully Borrowed a Book!\n\n";
+                } else {
+                    cout << "Error updating the Library file." << endl;
+                }
             } else {
                 cout << "Borrowing canceled." << endl;
             }
-        } else {
-            cout << "Sorry, you have reached the maximum limit of 5 borrowed books." << endl;
         }
+            else {
+                cout << "Sorry, you have reached the maximum limit of 5 borrowed books." << endl;
+            }
     }
 
     if (ch == 'n' || ch == 'N') {
@@ -244,9 +296,79 @@ void Book::borrowBook(const string& isbn, int copies, const string& username) {
     }
 }
 
+//void Book::borrowBook(const string& isbn, int copies, const string& username) {
+//    char ch;
+//    cout << "Do you want to borrow? y/n :  ";
+//    cin >> ch;
+//
+//    if (ch == 'y' || ch == 'Y') {
+//        if (copies == 0) {
+//            cout << "No Copies Available for this book";
+//        }
+//
+//        if (canBorrowBooks(username)) {
+//            // Allow the user to borrow a book
+//            BorrowedBooks borrow;
+//            borrow.username = username;
+//            borrow.ISBN = isbn;
+//
+//            // Get the current date
+//            time_t currentTime;
+//            struct tm* localTime;
+//            time(&currentTime);
+//            localTime = localtime(&currentTime);
+//
+//            // Format the borrow date and return date
+//            char borrowDateStr[11];
+//            char returnDateStr[11];
+//            strftime(borrowDateStr, sizeof(borrowDateStr), "%Y-%m-%d", localTime);
+//
+//            // Calculate the return date (2 weeks from the borrow date)
+//            localTime->tm_mday += 14; // Add 14 days
+//            mktime(localTime); // Normalize the date
+//
+//            strftime(returnDateStr, sizeof(returnDateStr), "%Y-%m-%d", localTime);
+//
+//            borrow.borrowDate = borrowDateStr;
+//            borrow.returnDate = returnDateStr;
+//
+//            // Display the borrowing date and return date
+//            cout << "Borrowing Date: " << borrow.borrowDate << endl;
+//            cout << "Return Date: " << borrow.returnDate << endl;
+//
+//            cout << "Confirm borrowing? y/n :  ";
+//            cin >> ch;
+//
+//            if (ch == 'y' || ch == 'Y') {
+//                ofstream borrowBookFile("borrowedBooks.txt", ios::app);
+//
+//                if (borrowBookFile.is_open()) {
+//                    borrowBookFile << borrow.username << "|" << borrow.ISBN << "|" << borrow.borrowDate << "|" << borrow.returnDate << endl;
+//                }
+//
+//                borrowedBooksList.push_back(borrow);
+//                borrowBookFile.close();
+//
+//                cout << "Successfully Borrowed a Book!\n\n";
+//            } else {
+//                cout << "Borrowing canceled." << endl;
+//            }
+//        } else {
+//            cout << "Sorry, you have reached the maximum limit of 5 borrowed books." << endl;
+//        }
+//    }
+//
+//    if (ch == 'n' || ch == 'N') {
+//        cout << "No";
+//    } else {
+//        cout << "\n";
+//    }
+//}
+
+
 string Book::getTitleByISBN(const string& targetISBN) {
-    ifstream libraryFile("library.txt");
-    string line, title, author, isbn, copiesStr;
+    ifstream libraryFile("Library.txt");
+    string line, title,isbn;
 
     while (getline(libraryFile, line)) {
         // Parse the line into title, author, ISBN, and copies
@@ -259,7 +381,6 @@ string Book::getTitleByISBN(const string& targetISBN) {
             pos = line.find('|');
 
             if (pos != string::npos) {
-                author = line.substr(0, pos);
                 line.erase(0, pos + 1); // Remove '|'
 
                 pos = line.find('|');
@@ -267,8 +388,6 @@ string Book::getTitleByISBN(const string& targetISBN) {
                 if (pos != string::npos) {
                     isbn = line.substr(0, pos);
                     line.erase(0, pos + 1); // Remove '|'
-
-                    copiesStr = line;
 
                     // Check if the ISBN matches the targetISBN
                     if (isbn == targetISBN) {
@@ -282,7 +401,45 @@ string Book::getTitleByISBN(const string& targetISBN) {
 
     // If no matching ISBN is found, return an empty string
     return "";
-}
+}//string Book::getTitleByISBN(const string& targetISBN) {
+//    ifstream libraryFile("library.txt");
+//    string line, title, author, isbn, copiesStr;
+//
+//    while (getline(libraryFile, line)) {
+//        // Parse the line into title, author, ISBN, and copies
+//        size_t pos = line.find('|');
+//
+//        if (pos != string::npos) {
+//            title = line.substr(0, pos);
+//            line.erase(0, pos + 1); // Remove '|'
+//
+//            pos = line.find('|');
+//
+//            if (pos != string::npos) {
+//                author = line.substr(0, pos);
+//                line.erase(0, pos + 1); // Remove '|'
+//
+//                pos = line.find('|');
+//
+//                if (pos != string::npos) {
+//                    isbn = line.substr(0, pos);
+//                    line.erase(0, pos + 1); // Remove '|'
+//
+//                    copiesStr = line;
+//
+//                    // Check if the ISBN matches the targetISBN
+//                    if (isbn == targetISBN) {
+//                        // Return the corresponding title
+//                        return title;
+//                    }
+//                }
+//            }
+//        }
+//    }
+//
+//    // If no matching ISBN is found, return an empty string
+//    return "";
+//}
 
 //void Book::showBorrowedBooks(const string& targetUser) {
 //    ifstream borrowBooksFile("borrowedBooks.txt");
@@ -334,7 +491,7 @@ void Book::showBorrowedBooks(const string& targetUser) {
                     returnDate = line; // The remaining part is the return date
                     if (user == targetUser) {
                         // Output the book title, borrow date, and return date
-                        cout << "Book Title: " << getTitleByISBN(isbn) << endl;
+                        cout << "\n\nBook Title: " << getTitleByISBN(isbn) << endl;
                         cout << "Borrow Date: " << borrowDate << endl;
                         cout << "Return Date: " << returnDate << endl;
                     }

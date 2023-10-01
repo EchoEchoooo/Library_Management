@@ -32,8 +32,8 @@ public:
     void deserializeBooks();
 
     void addBook(string title, string author, long int ISBN, int copies);
-    void deleteBook(string isbn);
-    void modifyBook(string isbn);
+    void deleteBook(const string& isbn);
+    void modifyBook(const string& isbn);
 
     bool searchBook(const string& title, const string &username);
 

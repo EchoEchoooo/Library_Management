@@ -54,7 +54,9 @@ int main()
                         cout << "\n\n\tS T U D E N T  M E N U\n";
                         cout << "[1] Borrow Book";
                         cout << "\n[2] My Borrowed Books";
-                        cout << "\n[3] Exit";
+                        cout << "\n[3] Return Book/s";
+                        cout << "\n[4] Display Library";
+                        cout << "\n[5] Exit";
                         cout << "\n\nEnter your Choice:";
 
                         cin >> userChoice;
@@ -82,7 +84,7 @@ int main()
                                 cout << "Error.";
                         }
 
-                    } while(userChoice != 3);
+                    } while(userChoice != 5);
                 }
             }
                 break;
