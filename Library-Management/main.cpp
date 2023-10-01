@@ -11,13 +11,23 @@ int main()
 {
     User user;
     Admin admin;
+    Book book;
 
     user.deserializeUsers();
     admin.deserializeUsers();
+    book.deserializeBooks();
+
+    //Book variables
+    string title, author, isbn;
+    int copies;
+
+
     string username, password;
     int contactNo;
 
     char ch;
+
+
 
     do {
         system("CLS");
@@ -90,12 +100,36 @@ int main()
                         cin >> adminChoice;
                         switch (adminChoice) {
                             case 1: //addBook();
+                                cout << "Enter Title: ";
+                                getline(cin,title);
+                                cin.ignore();
+
+                                cout << "\nEnter Author: ";
+                                getline(cin, author);
+                                cin.ignore();
+
+                                cout << "Enter ISBN: ";
+                                cin >> isbn;
+
+                                cout << "Enter Copies: ";
+                                cin >> copies;
+
+                                book.addBook(title,author,isbn,copies);
+                                book.serializeBooks();
                                 break;
-                            case 2: //modifyBook();
+                            case 2: // modifyBook
+                                cout << "Enter ISBN of the book to modify: ";
+                                cin >> isbn;
+                                book.modifyBook(isbn);
+                                book.serializeBooks();
                                 break;
-                            case 3: //deleteBook();
+                            case 3: //deleteBook
+                                cout << "Enter ISBN: ";
+                                cin >> isbn;
+                                book.deleteBook(isbn);
                                 break;
-                            case 4: //displayBooks();
+                            case 4:
+                                book.displayAllBooks();
                                 break;
                             case 5:
                                 cout << "Enter Username: ";
@@ -138,7 +172,6 @@ int main()
                 system("CLS");
                 cout << "\n\n\n\tThank you for using our program!\n\n\n";
                 exit(0);
-                break;
             default:
                 cout << "\n\tInvalid Choice! ";
                 system("pause");
