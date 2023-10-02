@@ -1,3 +1,3 @@
-E:/GitKraken/Library_Management/Library-Management/cmake-build-debug/CMakeFiles/Library_Management.dir
-E:/GitKraken/Library_Management/Library-Management/cmake-build-debug/CMakeFiles/edit_cache.dir
-E:/GitKraken/Library_Management/Library-Management/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/Users/jeth/Documents/School Files/CPP/CASE STUDY/Library_Management/CASE1/Library-Management/cmake-build-debug/CMakeFiles/Library_Management.dir
+/Users/jeth/Documents/School Files/CPP/CASE STUDY/Library_Management/CASE1/Library-Management/cmake-build-debug/CMakeFiles/edit_cache.dir
+/Users/jeth/Documents/School Files/CPP/CASE STUDY/Library_Management/CASE1/Library-Management/cmake-build-debug/CMakeFiles/rebuild_cache.dir

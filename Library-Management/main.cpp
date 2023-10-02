@@ -41,37 +41,51 @@ int main()
         switch (ch) {
             case '1':
             {
-                /*int studentChoice;
-                do {
-                    system("CLS");
-                    cout << "\n\n";
-                    cout << setw(50) << " Student Menu";
-                    cout << "\n\n\t1. Login";
-                    cout << "\n\n\t2. Register";
-                    cout << "\n\n\t3. Back to main menu";
-                    cout << "\n\n\tChoose an option: ";
-                    cin >> studentChoice;
-                    switch (studentChoice) {
-                        case 1:
-                            if (studentLogin()) {
-                                cout << "\n\tStudent login successful.\n";
+                cout << "Enter Username: ";
+                cin >> username;
+                cout << "Enter Password: ";
+                cin >> password;
 
-                            } else {
-                                cout << "\n\tStudent login failed.\n";
-                            }
-                            system("pause");
-                            break;
-                        case 2:
-                            registerAccount();
-                            system("pause");
-                            break;
-                        case 3:
-                            break;
-                        default:
-                            cout << "\n\tInvalid Choice! ";
-                            system("pause");
-                    }
-                } while (studentChoice != 3);*/
+                if (user.loginUser(username, password)) {
+                    cout << "\n\tStudent login successful.\n";
+                    int userChoice;
+
+                    do {
+                        cout << "\n\n\tS T U D E N T  M E N U\n";
+                        cout << "[1] Borrow Book";
+                        cout << "\n[2] My Borrowed Books";
+                        cout << "\n[3] Return Book/s";
+                        cout << "\n[4] Display Library";
+                        cout << "\n[5] Exit";
+                        cout << "\n\nEnter your Choice:";
+
+                        cin >> userChoice;
+                        string userInput;
+                        switch (userChoice) {
+                            case 1:
+                                    cout << "[B O O K  S E A R C H] \n";
+                                    cout << "0 to exit\n\n";
+                                    cout << "Search a Book: ";
+                                    cin.ignore();
+                                    getline(cin, userInput);
+                                    if (book.searchBook(userInput,username)) {
+                                        // book found
+                                    }
+                                    else{
+                                        cout << "The Book you searched is not available.\n\n";
+                                    }
+                                break;
+
+                            case 2:
+                                book.showBorrowedBooks(username);
+                                break;
+
+                            default:
+                                cout << "Error.";
+                        }
+
+                    } while(userChoice != 5);
+                }
             }
                 break;
             case '2':

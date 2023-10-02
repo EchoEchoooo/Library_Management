@@ -21,7 +21,9 @@ protected:
 
     struct BorrowedBooks {
         string username;
-        vector<int> ISBNs;
+        string ISBN;
+        string borrowDate;
+        string returnDate;
     };
     vector<BorrowedBooks> borrowedBooksList;
 

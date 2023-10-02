@@ -2,10 +2,7 @@
 	"artifacts" : 
 	[
 		{
-			"path" : "Library_Management.exe"
-		},
-		{
-			"path" : "Library_Management.pdb"
+			"path" : "Library_Management"
 		}
 	],
 	"backtrace" : 1,
@@ -38,7 +35,7 @@
 			"compileCommandFragments" : 
 			[
 				{
-					"fragment" : "-g -fdiagnostics-color=always"
+					"fragment" : "-g -std=gnu++17 -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.1.sdk -fcolor-diagnostics"
 				}
 			],
 			"language" : "CXX",
@@ -71,16 +68,12 @@
 			{
 				"fragment" : "",
 				"role" : "flags"
-			},
-			{
-				"fragment" : "-lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32",
-				"role" : "libraries"
 			}
 		],
 		"language" : "CXX"
 	},
 	"name" : "Library_Management",
-	"nameOnDisk" : "Library_Management.exe",
+	"nameOnDisk" : "Library_Management",
 	"paths" : 
 	{
 		"build" : ".",
