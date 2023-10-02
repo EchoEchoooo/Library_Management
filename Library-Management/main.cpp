@@ -21,13 +21,11 @@ int main()
     string title, author, isbn;
     int copies;
 
-
+    //User variables
     string username, password;
     int contactNo;
 
     char ch;
-
-
 
     do {
         system("CLS");
@@ -40,7 +38,7 @@ int main()
         cin >> ch;
         switch (ch) {
             case '1':
-            {
+
                 cout << "Enter Username: ";
                 cin >> username;
                 cout << "Enter Password: ";
@@ -56,7 +54,8 @@ int main()
                         cout << "\n[2] My Borrowed Books";
                         cout << "\n[3] Return Book/s";
                         cout << "\n[4] Display Library";
-                        cout << "\n[5] Exit";
+                        cout << "\n[5] Modify Account";
+                        cout << "\n[6] Exit";
                         cout << "\n\nEnter your Choice:";
 
                         cin >> userChoice;
@@ -80,13 +79,27 @@ int main()
                                 book.showBorrowedBooks(username);
                                 break;
 
+                            case 4:
+                                book.displayAllBooks();
+                                break;
+
+                            case 5:
+                                user.modifyUser(username);
+                                user.serializeUsers();
+                                break;
+                            case 6:
+
+                                break;
                             default:
                                 cout << "Error.";
                         }
 
-                    } while(userChoice != 5);
+                    } while(userChoice != 6);
                 }
-            }
+
+                else
+                    cout << "\nIncorrect username or password\n";
+
                 break;
             case '2':
                 cout << "Enter Username: ";

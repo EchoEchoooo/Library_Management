@@ -10,6 +10,7 @@
 #include <fstream>
 #include <string>
 #include <ctime>
+#include <algorithm>
 using namespace std;
 
 void Book::serializeBooks() { //Write to admins text file

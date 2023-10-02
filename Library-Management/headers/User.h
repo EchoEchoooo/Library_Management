@@ -15,7 +15,7 @@ protected:
         //string firstName, middleName, lastName;
         string username;
         string password;
-        int contactNo;
+        string contactNo;
     };
     vector<Users> usersList;
 
@@ -40,7 +40,7 @@ public:
     void displayAllUsers();
 
     bool loginUser(string username, string password);
-    //bool userExists(string username);
+    bool userExists(string username, string password);
 };
 
 class Admin: public User {

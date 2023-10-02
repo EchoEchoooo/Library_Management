@@ -59,11 +59,12 @@ void User::addUser(string username, string password, int contactNo) { //adds a u
 }
 
 void User::modifyUser(string username) {
-    string password, newUsername, newPassword;
+    string password, newUsername, newPassword, newContactNum;
 
     int ch;
-    cout << "\n\t1. Change Username: ";
-    cout << "\n\t2. Change Password: ";
+    cout << "\n\t1. Change Username\n";
+    cout << "\n\t2. Change Password\n";
+    cout << "\n\t3. Change Contact Number \nEnter your Choice: ";
     cin >> ch;
 
     switch(ch) {
@@ -100,6 +101,20 @@ void User::modifyUser(string username) {
             }
             break;
 
+        case 3:
+            cout << "Enter New Contact Number: ";
+            cin >> newContactNum;
+
+            for (auto & i : usersList) {
+                if (i.username == username)  {
+                    i.contactNo = newContactNum;
+
+                    cout << "\nContact Number changed successfully\n";
+                    break;
+                }
+            }
+            break;
+
         default:
             break;
     }
@@ -116,6 +131,8 @@ bool User::loginUser(string username, string password) {
                 return true;
         }
     }
+
+    return false;
 }
 
 void User::displayAllUsers() { //display all the users in the vector
@@ -159,5 +176,14 @@ void User::deleteUser(string username) {
                 cout << "\n\tUser not found";
         }
     }
+}
+
+bool User::userExists(string username, string password) {
+    for (auto i = usersList.begin(); i != usersList.end(); ++i) {
+        if (i->username == username && i->password == password)
+            return true;
+    }
+
+    return false;
 }
 

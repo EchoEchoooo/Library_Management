@@ -217,4 +217,6 @@ bool Admin::loginUser(string username, string password) {
                 return true;
         }
     }
+
+    return false;
 }
