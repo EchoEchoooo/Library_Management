@@ -1,23 +1,19 @@
-//
-// Created by Chairo on 9/22/2023.
-//
-
 #include "headers/User.h"
 #include "headers/Book.h"
 #include <iostream>
 #include <utility>
-#include <vector>
 #include <fstream>
 #include <string>
 #include <ctime>
 #include <algorithm>
+
 using namespace std;
 
 void Book::serializeBooks() { //Write to admins text file
     ofstream bookFile("Library.txt");
 
-    if(bookFile.is_open()) {
-        for (auto & i : bookList) {
+    if (bookFile.is_open()) {
+        for (auto &i: bookList) {
             bookFile << i.title << "|" << i.author << "|" << i.ISBN << "|" << i.copies << endl;
         }
     }
@@ -54,7 +50,7 @@ void Book::deserializeBooks() { // Read from admins text file
                 copies = stoi(line);
 
                 // run the function & add the book inside the book vector
-                addBook(title,author,isbn,copies);
+                addBook(title, author, isbn, copies);
             }
         }
     }
@@ -79,15 +75,15 @@ void Book::displayAllBooks() { //display all the users in the vector
         exit(1);
 
     else {
-        for (auto & i : bookList) {
+        for (auto &i: bookList) {
             cout << "\t\t[" << i.ISBN << "]\n";
             cout << "Title: " << i.title << "\nAuthor: " << i.author
-            << endl << "Copies: " << i.copies << endl << endl;
+                 << endl << "Copies: " << i.copies << endl << endl;
         }
     }
 }
 
-void Book::deleteBook(const string& isbn) {
+void Book::deleteBook(const string &isbn) {
     if (bookList.empty())
         cout << "\n\tThere are no books\n";
 
@@ -97,22 +93,20 @@ void Book::deleteBook(const string& isbn) {
                 bookList.erase(i);
                 cout << endl << isbn << " has been successfully deleted\n";
                 break;
-            }
-
-            else
+            } else
                 cout << "\n\tBook not found";
         }
     }
 }
 
-void Book::modifyBook(const string& isbn) {
+void Book::modifyBook(const string &isbn) {
     if (bookList.empty()) {
         cout << "\n\tThere are no books to modify.\n";
         return;
     }
 
     bool found = false;
-    for (auto &book : bookList) {
+    for (auto &book: bookList) {
         if (book.ISBN == isbn) {
             found = true;
             cout << "\n\tBook found. Please enter the new information:\n";
@@ -144,7 +138,7 @@ void Book::modifyBook(const string& isbn) {
     }
 }
 
-bool Book::stringCompare(const string& str1, const string& str2) {
+bool Book::stringCompare(const string &str1, const string &str2) {
     // Convert both strings to lowercase for comparison
     string lowerStr1 = str1;
     string lowerStr2 = str2;
@@ -155,18 +149,8 @@ bool Book::stringCompare(const string& str1, const string& str2) {
     return lowerStr1 == lowerStr2;
 }
 
-//void Book::searchBook(const string& title) {
-//
-//    for (const Books& book : bookList) {
-//        if (stringCompare(book.title, title)) {
-//            cout << "BOOKFOUNDDDDDD!!: " << book.title << endl;
-//        }
-//    }
-//
-//}
-
-bool Book::searchBook(const string& title, const string &username) {
-    for (const Books& book : bookList) {
+bool Book::searchBook(const string &title, const string &username) {
+    for (const Books &book: bookList) {
         if (stringCompare(book.title, title)) {
             cout << "\n\nBOOK FOUND: " << book.title << endl;
 
@@ -178,7 +162,7 @@ bool Book::searchBook(const string& title, const string &username) {
     return false; // Book not found, return false
 }
 
-void Book::borrowBook(const string& isbn, int copies, const string& username) {
+void Book::borrowBook(const string &isbn, int copies, const string &username) {
     char ch;
     cout << "Do you want to borrow? y/n :  ";
     cin >> ch;
@@ -196,7 +180,7 @@ void Book::borrowBook(const string& isbn, int copies, const string& username) {
 
             // Get the current date
             time_t currentTime;
-            struct tm* localTime;
+            struct tm *localTime;
             time(&currentTime);
             localTime = localtime(&currentTime);
 
@@ -252,12 +236,13 @@ void Book::borrowBook(const string& isbn, int copies, const string& username) {
                                 if (bookIsbn == isbn) {
                                     copies--;
                                     if (copies < 0) {
-                                        copies   = 0; // Ensure non-negative copies
+                                        copies = 0; // Ensure non-negative copies
                                     }
                                 }
 
                                 // Modify the line with updated copies and write to the updated file
-                                updatedLibraryFile << title << "|" << author << "|" << bookIsbn << "|" << copies << endl;
+                                updatedLibraryFile << title << "|" << author << "|" << bookIsbn << "|" << copies
+                                                   << endl;
                             }
                         }
                     }
@@ -271,7 +256,8 @@ void Book::borrowBook(const string& isbn, int copies, const string& username) {
                     ofstream borrowBookFile("borrowedBooks.txt", ios::app);
 
                     if (borrowBookFile.is_open()) {
-                        borrowBookFile << borrow.username << "|" << borrow.ISBN << "|" << borrow.borrowDate << "|" << borrow.returnDate << endl;
+                        borrowBookFile << borrow.username << "|" << borrow.ISBN << "|" << borrow.borrowDate << "|"
+                                       << borrow.returnDate << endl;
                     }
 
                     borrowedBooksList.push_back(borrow);
@@ -284,10 +270,9 @@ void Book::borrowBook(const string& isbn, int copies, const string& username) {
             } else {
                 cout << "Borrowing canceled." << endl;
             }
+        } else {
+            cout << "Sorry, you have reached the maximum limit of 5 borrowed books." << endl;
         }
-            else {
-                cout << "Sorry, you have reached the maximum limit of 5 borrowed books." << endl;
-            }
     }
 
     if (ch == 'n' || ch == 'N') {
@@ -297,79 +282,9 @@ void Book::borrowBook(const string& isbn, int copies, const string& username) {
     }
 }
 
-//void Book::borrowBook(const string& isbn, int copies, const string& username) {
-//    char ch;
-//    cout << "Do you want to borrow? y/n :  ";
-//    cin >> ch;
-//
-//    if (ch == 'y' || ch == 'Y') {
-//        if (copies == 0) {
-//            cout << "No Copies Available for this book";
-//        }
-//
-//        if (canBorrowBooks(username)) {
-//            // Allow the user to borrow a book
-//            BorrowedBooks borrow;
-//            borrow.username = username;
-//            borrow.ISBN = isbn;
-//
-//            // Get the current date
-//            time_t currentTime;
-//            struct tm* localTime;
-//            time(&currentTime);
-//            localTime = localtime(&currentTime);
-//
-//            // Format the borrow date and return date
-//            char borrowDateStr[11];
-//            char returnDateStr[11];
-//            strftime(borrowDateStr, sizeof(borrowDateStr), "%Y-%m-%d", localTime);
-//
-//            // Calculate the return date (2 weeks from the borrow date)
-//            localTime->tm_mday += 14; // Add 14 days
-//            mktime(localTime); // Normalize the date
-//
-//            strftime(returnDateStr, sizeof(returnDateStr), "%Y-%m-%d", localTime);
-//
-//            borrow.borrowDate = borrowDateStr;
-//            borrow.returnDate = returnDateStr;
-//
-//            // Display the borrowing date and return date
-//            cout << "Borrowing Date: " << borrow.borrowDate << endl;
-//            cout << "Return Date: " << borrow.returnDate << endl;
-//
-//            cout << "Confirm borrowing? y/n :  ";
-//            cin >> ch;
-//
-//            if (ch == 'y' || ch == 'Y') {
-//                ofstream borrowBookFile("borrowedBooks.txt", ios::app);
-//
-//                if (borrowBookFile.is_open()) {
-//                    borrowBookFile << borrow.username << "|" << borrow.ISBN << "|" << borrow.borrowDate << "|" << borrow.returnDate << endl;
-//                }
-//
-//                borrowedBooksList.push_back(borrow);
-//                borrowBookFile.close();
-//
-//                cout << "Successfully Borrowed a Book!\n\n";
-//            } else {
-//                cout << "Borrowing canceled." << endl;
-//            }
-//        } else {
-//            cout << "Sorry, you have reached the maximum limit of 5 borrowed books." << endl;
-//        }
-//    }
-//
-//    if (ch == 'n' || ch == 'N') {
-//        cout << "No";
-//    } else {
-//        cout << "\n";
-//    }
-//}
-
-
-string Book::getTitleByISBN(const string& targetISBN) {
+string Book::getTitleByISBN(const string &targetISBN) {
     ifstream libraryFile("Library.txt");
-    string line, title,isbn;
+    string line, title, isbn;
 
     while (getline(libraryFile, line)) {
         // Parse the line into title, author, ISBN, and copies
@@ -402,69 +317,9 @@ string Book::getTitleByISBN(const string& targetISBN) {
 
     // If no matching ISBN is found, return an empty string
     return "";
-}//string Book::getTitleByISBN(const string& targetISBN) {
-//    ifstream libraryFile("library.txt");
-//    string line, title, author, isbn, copiesStr;
-//
-//    while (getline(libraryFile, line)) {
-//        // Parse the line into title, author, ISBN, and copies
-//        size_t pos = line.find('|');
-//
-//        if (pos != string::npos) {
-//            title = line.substr(0, pos);
-//            line.erase(0, pos + 1); // Remove '|'
-//
-//            pos = line.find('|');
-//
-//            if (pos != string::npos) {
-//                author = line.substr(0, pos);
-//                line.erase(0, pos + 1); // Remove '|'
-//
-//                pos = line.find('|');
-//
-//                if (pos != string::npos) {
-//                    isbn = line.substr(0, pos);
-//                    line.erase(0, pos + 1); // Remove '|'
-//
-//                    copiesStr = line;
-//
-//                    // Check if the ISBN matches the targetISBN
-//                    if (isbn == targetISBN) {
-//                        // Return the corresponding title
-//                        return title;
-//                    }
-//                }
-//            }
-//        }
-//    }
-//
-//    // If no matching ISBN is found, return an empty string
-//    return "";
-//}
+}
 
-//void Book::showBorrowedBooks(const string& targetUser) {
-//    ifstream borrowBooksFile("borrowedBooks.txt");
-//    string line, user, isbn;
-//
-//    cout << "Searching for user: " << targetUser << endl;
-//
-//    while (getline(borrowBooksFile, line)) {
-//        size_t pos = line.find('|');
-//
-//        if (pos != string::npos) {
-//            user = line.substr(0, pos);
-//
-//            if (user == targetUser) {
-//                isbn = line.substr(pos + 1); // Get the part after '|'
-//
-//                // Output the ISBN of the book borrowed by the target user
-//                cout << "Book Title: " << getTitleByISBN(isbn) << endl;
-//            }
-//        }
-//    }
-//    borrowBooksFile.close();
-//}
-void Book::showBorrowedBooks(const string& targetUser) {
+void Book::showBorrowedBooks(const string &targetUser) {
     ifstream borrowBooksFile("borrowedBooks.txt");
     string line, user, isbn, borrowDate, returnDate;
 
@@ -503,7 +358,7 @@ void Book::showBorrowedBooks(const string& targetUser) {
     borrowBooksFile.close();
 }
 
-bool Book::canBorrowBooks(const string& targetUser) {
+bool Book::canBorrowBooks(const string &targetUser) {
     ifstream borrowBooksFile("borrowedBooks.txt");
     string line, user;
     int borrowedCount = 0;

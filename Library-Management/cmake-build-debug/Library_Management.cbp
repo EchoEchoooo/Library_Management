@@ -88,9 +88,6 @@
 		<Unit filename="E:/GitKraken/Library_Management/Library-Management/bookFunctions.cpp">
 			<Option target="Library_Management"/>
 		</Unit>
-		<Unit filename="E:/GitKraken/Library_Management/Library-Management/data.h">
-			<Option target="Library_Management"/>
-		</Unit>
 		<Unit filename="E:/GitKraken/Library_Management/Library-Management/headers/Book.h">
 			<Option target="Library_Management"/>
 		</Unit>
