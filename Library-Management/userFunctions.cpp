@@ -2,6 +2,7 @@
 #include <iostream>
 #include <vector>
 #include <fstream>
+#include <iomanip>
 
 using namespace std; // Only added here, not in the header file
 
@@ -19,8 +20,8 @@ void User::serializeUsers() { //Write to users text file
 
 void User::deserializeUsers() { // Read from users text file
     ifstream usersFile("users.txt");
-    string line, username, password;
-    int contactNo;
+    string line, username, password, contactNo;
+
 
     while (getline(usersFile, line)) {
         size_t pos = line.find('|');
@@ -45,7 +46,7 @@ void User::deserializeUsers() { // Read from users text file
     usersFile.close();
 }
 
-void User::addUser(string username, string password, int contactNo) { //adds a user to the user vector
+void User::addUser(string username, string password, string contactNo) { //adds a user to the user vector
     Users users;
 
     users.username = username;
@@ -59,52 +60,54 @@ void User::modifyUser(string username) {
     string password, newUsername, newPassword, newContactNum;
 
     int ch;
-    cout << "\n\t1. Change Username\n";
-    cout << "\n\t2. Change Password\n";
-    cout << "\n\t3. Change Contact Number \nEnter your Choice: ";
+    cout << setw(50) << "M O D I F Y  A C C O U N T\n";
+    cout << "\n\t[1] Change Username\n";
+    cout << "\n\t[2] Change Password\n";
+    cout << "\n\t[3] Change Contact Number\n";
+    cout << "\n\tEnter your choice: ";
     cin >> ch;
 
     switch (ch) {
         case 1:
-            cout << "Enter New Username: ";
+            cout << "\tEnter New Username: ";
             cin >> newUsername;
 
             for (auto &i: usersList) {
                 if (i.username == username) {
                     i.username = newUsername;
 
-                    cout << endl << username << " has been changed to " << newUsername << endl;
+                    cout << endl << "\t" << username << " has been changed to " << newUsername << endl;
                     break;
                 }
             }
             break;
 
         case 2:
-            cout << "Enter Current Password: ";
+            cout << "\tEnter Current Password: ";
             cin >> password;
-            cout << "Enter New Password: ";
+            cout << "\tEnter New Password: ";
             cin >> newPassword;
 
             for (auto &i: usersList) {
                 if (i.username == username && i.password == password) {
                     i.password = newPassword;
 
-                    cout << "\nPassword changed successfully\n";
+                    cout << "\n\tPassword changed successfully\n";
                     break;
                 } else
-                    cout << endl << "Incorrect password, please try again\n";
+                    cout << endl << "\tIncorrect password, please try again\n";
             }
             break;
 
         case 3:
-            cout << "Enter New Contact Number: ";
+            cout << "\tEnter New Contact Number: ";
             cin >> newContactNum;
 
             for (auto &i: usersList) {
                 if (i.username == username) {
                     i.contactNo = newContactNum;
 
-                    cout << "\nContact Number changed successfully\n";
+                    cout << "\n\tContact Number changed successfully\n";
                     break;
                 }
             }
@@ -148,7 +151,7 @@ void User::deleteUser(string username) {
         for (auto i = usersList.begin(); i != usersList.end(); ++i) {
             if (i->username == username) {
                 usersList.erase(i);
-                cout << endl << username << " has been successfully deleted\n";
+                cout << endl << "\t" << username << " has been successfully deleted\n";
                 break;
             } else
                 cout << "\n\tUser not found";

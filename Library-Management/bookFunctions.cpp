@@ -77,8 +77,8 @@ void Book::displayAllBooks() { //display all the users in the vector
     else {
         for (auto &i: bookList) {
             cout << "\t\t[" << i.ISBN << "]\n";
-            cout << "Title: " << i.title << "\nAuthor: " << i.author
-                 << endl << "Copies: " << i.copies << endl << endl;
+            cout << "\tTitle: " << i.title << "\n\tAuthor: " << i.author
+                 << endl << "\tCopies: " << i.copies << endl << endl;
         }
     }
 }
@@ -323,7 +323,7 @@ void Book::showBorrowedBooks(const string &targetUser) {
     ifstream borrowBooksFile("borrowedBooks.txt");
     string line, user, isbn, borrowDate, returnDate;
 
-    cout << "Searching for user: " << targetUser << endl;
+    cout << "\tSearching for user: " << targetUser << endl;
 
     while (getline(borrowBooksFile, line)) {
         size_t pos = line.find('|');
@@ -347,9 +347,10 @@ void Book::showBorrowedBooks(const string &targetUser) {
                     returnDate = line; // The remaining part is the return date
                     if (user == targetUser) {
                         // Output the book title, borrow date, and return date
-                        cout << "\n\nBook Title: " << getTitleByISBN(isbn) << endl;
-                        cout << "Borrow Date: " << borrowDate << endl;
-                        cout << "Return Date: " << returnDate << endl;
+                        cout << "\n\n\t      [" << isbn << "]" << endl;
+                        cout << "\tBook Title: " << getTitleByISBN(isbn) << endl;
+                        cout << "\tBorrow Date: " << borrowDate << endl;
+                        cout << "\tReturn Date: " << returnDate << endl;
                     }
                 }
             }
@@ -429,8 +430,8 @@ void Book::returnBook(std::string username, string isbn) {
     // Rename the updated file to replace the original borrowedBooks.txt
     if (remove("borrowedBooks.txt") == 0 && rename("borrowedBooks_updated.txt", "borrowedBooks.txt") == 0) {
         // Successfully updated the borrowedBooks.txt file
-        cout << "Successfully returned the book." << endl;
+        cout << "\tSuccessfully returned the book." << endl;
     } else {
-        cout << "Error updating the borrowedBooks file." << endl;
+        cout << "\tError updating the borrowedBooks file." << endl;
     }
 }

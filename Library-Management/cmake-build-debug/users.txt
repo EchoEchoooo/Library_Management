@@ -1,5 +1,6 @@
-Juan|password123|123
+JuanDelaCruz|password123|123
 Jane|user123|123
 John|test123|123
 q|qweqwe|123
 test|test123|123
+test2|test123|123

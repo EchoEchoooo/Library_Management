@@ -29,7 +29,7 @@ public:
 
     void deserializeUsers();
 
-    void addUser(string username, string password, int contactNo);
+    void addUser(string username, string password, string contactNo);
 
     void modifyUser(string username);
 
@@ -48,7 +48,7 @@ public:
 
     void deserializeUsers();
 
-    void addUser(string username, string password, int contactNo);
+    void addUser(string username, string password, string contactNo);
 
     void deleteUser(string username);
 

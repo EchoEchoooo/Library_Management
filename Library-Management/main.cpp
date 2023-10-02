@@ -18,8 +18,8 @@ int main() {
     string title, author, isbn;
     int copies;
 
-    string username, password;
-    int contactNo;
+    string username, password, contactNo;
+
 
     char ch;
 
@@ -34,24 +34,24 @@ int main() {
         cin >> ch;
         switch (ch) {
             case '1':
-                cout << "Enter Username: ";
+                cout << "\tEnter Username: ";
                 cin >> username;
-                cout << "Enter Password: ";
+                cout << "\tEnter Password: ";
                 cin >> password;
 
                 if (user.loginUser(username, password)) {
-                    cout << "\n\tStudent login successful.\n";
+                    cout << "\n\tStudent login successful.\n\n";
                     int userChoice;
 
                     do {
-                        cout << "\n\n\tS T U D E N T  M E N U";
-                        cout << "\n[1] Borrow Book";
-                        cout << "\n[2] My Borrowed Books";
-                        cout << "\n[3] Return Book/s";
-                        cout << "\n[4] Display Library";
-                        cout << "\n[5] Modify Account";
-                        cout << "\n[6] Exit";
-                        cout << "\n\nEnter your Choice:";
+                        cout << setw(50) << "S T U D E N T  M E N U" << endl;
+                        cout << "\n\t[1] Borrow Book";
+                        cout << "\n\t[2] My Borrowed Books";
+                        cout << "\n\t[3] Return Book/s";
+                        cout << "\n\t[4] Display Library";
+                        cout << "\n\t[5] Modify Account";
+                        cout << "\n\t[6] Exit";
+                        cout << "\n\n\tEnter your Choice:";
                         cin >> userChoice;
                         string userInput;
                         switch (userChoice) {
@@ -71,7 +71,7 @@ int main() {
                                 book.showBorrowedBooks(username);
                                 break;
                             case 3:
-                                cout << "Enter ISBN: ";
+                                cout << "\tEnter ISBN: ";
                                 cin >> isbn;
                                 book.returnBook(username, isbn);
                                 break;
@@ -93,9 +93,9 @@ int main() {
 
                 break;
             case '2':
-                cout << "Enter Username: ";
+                cout << "\tEnter Username: ";
                 cin >> username;
-                cout << "Enter Password: ";
+                cout << "\tEnter Password: ";
                 cin >> password;
 
                 if (admin.loginUser(username, password)) {
@@ -104,15 +104,15 @@ int main() {
                     do {
                         cout << "\n\n";
                         cout << setw(50) << " Admin Menu";
-                        cout << "\n\n\t1. Add books";
-                        cout << "\n\n\t2. Modify books";
-                        cout << "\n\n\t3. Delete books";
-                        cout << "\n\n\t4. Display all books";
-                        cout << "\n\n\t5. Create student account";
-                        cout << "\n\n\t6. Modify student account";
-                        cout << "\n\n\t7. Delete student account";
-                        cout << "\n\n\t8. Display student accounts";
-                        cout << "\n\n\t9. Back to main menu";
+                        cout << "\n\n\t[1] Add books";
+                        cout << "\n\n\t[2] Modify books";
+                        cout << "\n\n\t[3] Delete books";
+                        cout << "\n\n\t[4] Display all books";
+                        cout << "\n\n\t[5] Create student account";
+                        cout << "\n\n\t[6] Modify student account";
+                        cout << "\n\n\t[7] Delete student account";
+                        cout << "\n\n\t[8] Display student accounts";
+                        cout << "\n\n\t[9] Back to main menu";
                         cout << "\n\n\tChoose an option: ";
                         cin >> adminChoice;
                         switch (adminChoice) {
@@ -166,7 +166,7 @@ int main() {
                                 user.modifyUser(username);
                                 break;
                             case 7: //deleteStudentAccount
-                                cout << "Enter Username: ";
+                                cout << "\tEnter Username: ";
                                 cin >> username;
                                 admin.deleteUser(username);
                                 break;

@@ -18,8 +18,8 @@ void Admin::serializeUsers() { //Write to admins text file
 
 void Admin::deserializeUsers() { // Read from admins text file
     ifstream adminsFile("admins.txt");
-    string line, username, password;
-    int contactNo;
+    string line, username, password, contactNo;
+
 
     while (getline(adminsFile, line)) {
         size_t pos = line.find('|');
@@ -44,7 +44,7 @@ void Admin::deserializeUsers() { // Read from admins text file
     adminsFile.close();
 }
 
-void Admin::addUser(string username, string password, int contactNo) {
+void Admin::addUser(string username, string password, string contactNo) {
     Users admins;
 
     admins.username = username;
