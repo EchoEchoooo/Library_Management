@@ -530,3 +530,52 @@ bool Book::canBorrowBooks(const string& targetUser) {
 }
 
 
+void Book::returnBook(std::string username, string isbn) {
+    ifstream borrowBooksFile("borrowedBooks.txt");
+    ofstream updatedBorrowBooksFile("borrowedBooks_updated.txt");
+    string line, user, bookIsbn, borrowDate, returnDate;
+
+    while (getline(borrowBooksFile, line)) {
+        size_t pos = line.find('|');
+
+        if (pos != string::npos) {
+            user = line.substr(0, pos);
+            line.erase(0, pos + 1); // Remove '|'
+
+            pos = line.find('|');
+
+            if (pos != string::npos) {
+                bookIsbn = line.substr(0, pos);
+                line.erase(0, pos + 1); // Remove '|'
+
+                pos = line.find('|');
+
+                if (pos != string::npos) {
+                    borrowDate = line.substr(0, pos);
+                    line.erase(0, pos + 1); // Remove '|'
+
+                    returnDate = line; // The remaining part is the return date
+
+                    if (user == username && bookIsbn == isbn) {
+                        // Skip the line to remove
+                        continue;
+                    }
+                }
+            }
+        }
+
+        // Write the line to the updated file
+        updatedBorrowBooksFile << user << "|" << bookIsbn << "|" << borrowDate << "|" << returnDate << endl;
+    }
+
+    borrowBooksFile.close();
+    updatedBorrowBooksFile.close();
+
+    // Rename the updated file to replace the original borrowedBooks.txt
+    if (remove("borrowedBooks.txt") == 0 && rename("borrowedBooks_updated.txt", "borrowedBooks.txt") == 0) {
+        // Successfully updated the borrowedBooks.txt file
+        cout << "Successfully returned the book." << endl;
+    } else {
+        cout << "Error updating the borrowedBooks file." << endl;
+    }
+}

@@ -49,8 +49,8 @@
 	"kind" : "codemodel",
 	"paths" : 
 	{
-		"build" : "C:/Users/Chairo/CLionProjects/Library_Management/Library-Management/cmake-build-debug",
-		"source" : "C:/Users/Chairo/CLionProjects/Library_Management/Library-Management"
+		"build" : "E:/GitKraken/Library_Management/Library-Management/cmake-build-debug",
+		"source" : "E:/GitKraken/Library_Management/Library-Management"
 	},
 	"version" : 
 	{

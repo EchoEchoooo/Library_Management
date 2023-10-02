@@ -74,9 +74,14 @@ int main()
                                         cout << "The Book you searched is not available.\n\n";
                                     }
                                 break;
-
                             case 2:
                                 book.showBorrowedBooks(username);
+                                break;
+                            case 3:
+                                //returnBook();
+                                cout << "Enter ISBN: ";
+                                cin >> isbn;
+                                book.returnBook(username, isbn);
                                 break;
 
                             case 4:

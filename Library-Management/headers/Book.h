@@ -31,17 +31,15 @@ public:
     void serializeBooks();
     void deserializeBooks();
 
-    void addBook(string title, string author, long int ISBN, int copies);
     void deleteBook(const string& isbn);
     void modifyBook(const string& isbn);
 
     bool searchBook(const string& title, const string &username);
 
-    bool bookIsAvailable(long int ISBN);
+    //bool bookIsAvailable(long int ISBN);
     void displayAllBooks();
 
-//    void borrowBook(string username, long int ISBN);
-    void returnBook(string username, long int ISBN);
+    void returnBook(string username, string isbn);
 
     void addBook(string title, string author, string isbn, int copies);
 
