@@ -95,7 +95,7 @@ void Book::deleteBook(const string &isbn) {
         for (auto i = bookList.begin(); i != bookList.end(); ++i) {
             if (i->ISBN == isbn) {
                 bookList.erase(i);
-                cout << endl << isbn << " has been successfully deleted\n";
+                cout << "\t" << isbn << " has been successfully deleted\n";
                 break;
             }
         }
@@ -173,7 +173,7 @@ void Book::borrowBook(const string &isbn, int copies, const string &username) {
 
     if (ch == 'y' || ch == 'Y') {
         if (copies == 0) {
-            cout << "\tNo Copies Available for this book";
+            cout << "\tNo Copies Available for this book\n";
             return;
         }
 

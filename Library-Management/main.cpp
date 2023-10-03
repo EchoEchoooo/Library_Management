@@ -24,7 +24,6 @@ int main() {
     char ch;
 
     do {
-        system("CLS");
         cout << "\n\n";
         cout << "\t===================================================================" << endl;
         cout << "\t\t  L I B R A R Y  M A N A G E M E N T  S Y S T E M" << endl;
@@ -32,8 +31,9 @@ int main() {
         cout << "\n\t1. Student";
         cout << "\n\n\t2. Admin";
         cout << "\n\n\t3. Exit";
-        cout << "\n\n\tChoose an account: ";
+        cout << "\n\n\tChoose an Option: ";
         cin >> ch;
+        cin.ignore();
         switch (ch) {
             case '1':
                 cout << "\t===================================================================" << endl;
@@ -41,8 +41,10 @@ int main() {
                 cout << "\t===================================================================" << endl;
                 cout << "\n\tEnter Username: ";
                 cin >> username;
+                cin.ignore();
                 cout << "\tEnter Password: ";
                 cin >> password;
+                cin.ignore();
 
                 if (user.loginUser(username, password)) {
                     cout << "\n\tStudent login successful.\n\n";
@@ -166,6 +168,7 @@ int main() {
                                 cout << "\tEnter ISBN: ";
                                 cin >> isbn;
                                 book.deleteBook(isbn);
+                                book.serializeBooks();
                                 break;
                             case 4: //displayAllBooks
                                 book.displayAllBooks();
@@ -191,6 +194,7 @@ int main() {
                                 cout << "\tEnter account username to modify: ";
                                 cin >> username;
                                 user.modifyUser(username);
+                                user.serializeUsers();
                                 break;
                             case 7: //deleteStudentAccount
                                 cout << "\t===================================================================" << endl;
@@ -198,7 +202,8 @@ int main() {
                                 cout << "\t===================================================================" << endl;
                                 cout << "\tEnter Username: ";
                                 cin >> username;
-                                admin.deleteUser(username);
+                                user.deleteUser(username);
+                                user.serializeUsers();
                                 break;
                             case 8: //displayStudentAccounts
                                 cout << "\t===================================================================" << endl;
@@ -220,7 +225,6 @@ int main() {
                 system("pause");
                 break;
             case '3':
-                system("CLS");
                 cout << "\n\n\n\tThank you for using our program!\n\n\n";
                 exit(0);
             default:

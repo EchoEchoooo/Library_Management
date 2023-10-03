@@ -1,15 +1,10 @@
-Juan|password123|123
+JuanDelaCruz|pass123|1234567890
 Jane|user123|123
+Juan|test123|123456789
 John|test123|123
-<<<<<<< HEAD
 test1|test123|12345
 test2|test123|123
-=======
 tests|test123|12345
 test2|test123|123
-123|123|123456
-1234|1234|123456
-keka|pass123|12345
-testttt|1234|12345
-q|w|123
->>>>>>> main
+
+JohnDoe123|test123|1234567890
