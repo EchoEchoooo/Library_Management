@@ -103,6 +103,7 @@ void User::modifyUser(string username) {
                     break;
                 } else
                     cout << endl << "\tIncorrect password, please try again\n";
+                break;
             }
             break;
 
@@ -142,16 +143,16 @@ bool User::loginUser(string username, string password) {
 }
 
 void User::displayAllUsers() { //display all the users in the vector
+
+    cout << "\t     Username" << "\t|" << "\tPassword" << "\t|" << "\tContact No" << endl;
     if (usersList.empty())
         exit(1);
-
     else {
         for (auto &i: usersList) {
-            cout << i.username << " | " << i.password << " | " << i.contactNo << endl;
+            cout << "\t     " << setw(8)<< i.username << "\t|" << setw(8) << " "<< i.password << "\t|" << setw(8)<< " "<< i.contactNo << endl;
         }
     }
 }
-
 
 void User::deleteUser(string username) {
     if (usersList.empty())
