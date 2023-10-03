@@ -14,7 +14,6 @@ void User::serializeUsers() { //Write to users text file
             usersFile << i.username << "|" << i.password << "|" << i.contactNo << endl;
         }
     }
-
     usersFile.close();
 }
 
@@ -36,7 +35,7 @@ void User::deserializeUsers() { // Read from users text file
                 password = line.substr(0, pos);
                 line.erase(0, pos + 1); // nireremove neto yung |
 
-                contactNo = stoi(line);
+                contactNo = std::to_string(stoi(line));
 
                 addUser(username, password, contactNo);
             }
@@ -60,7 +59,9 @@ void User::modifyUser(string username) {
     string password, newUsername, newPassword, newContactNum;
 
     int ch;
-    cout << setw(50) << "M O D I F Y  A C C O U N T\n";
+    cout << "\t===================================================================" << endl;
+    cout << "\t\t\t    M O D I F Y   A C C O U N T" << endl;
+    cout << "\t===================================================================" << endl;
     cout << "\n\t[1] Change Username\n";
     cout << "\n\t[2] Change Password\n";
     cout << "\n\t[3] Change Contact Number\n";
@@ -69,6 +70,9 @@ void User::modifyUser(string username) {
 
     switch (ch) {
         case 1:
+            cout << "\t===================================================================" << endl;
+            cout << "\t\t\t     M O D I F Y   A C C O U N T" << endl;
+            cout << "\t===================================================================" << endl;
             cout << "\tEnter New Username: ";
             cin >> newUsername;
 
@@ -83,6 +87,9 @@ void User::modifyUser(string username) {
             break;
 
         case 2:
+            cout << "\t===================================================================" << endl;
+            cout << "\t\t\t     M O D I F Y   A C C O U N T" << endl;
+            cout << "\t===================================================================" << endl;
             cout << "\tEnter Current Password: ";
             cin >> password;
             cout << "\tEnter New Password: ";
@@ -100,6 +107,9 @@ void User::modifyUser(string username) {
             break;
 
         case 3:
+            cout << "\t===================================================================" << endl;
+            cout << "\t\t\t     M O D I F Y   A C C O U N T" << endl;
+            cout << "\t===================================================================" << endl;
             cout << "\tEnter New Contact Number: ";
             cin >> newContactNum;
 

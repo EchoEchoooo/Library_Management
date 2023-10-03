@@ -1,3 +1,5 @@
 admin1|password123|71239123
 admin2|pass456!|12634512
 admin3|admin@1234|58923124
+test1|test123|12345678
+test2|test123|12345678

@@ -322,7 +322,12 @@ CMakeFiles/Library_Management.dir/bookFunctions.cpp.obj: E:/GitKraken/Library_Ma
   C:/Users/Admin/AppData/Local/Programs/CLion/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/uniform_int_dist.h \
   C:/Users/Admin/AppData/Local/Programs/CLion/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/stl_tempbuf.h \
   C:/Users/Admin/AppData/Local/Programs/CLion/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/pstl/glue_algorithm_defs.h \
-  C:/Users/Admin/AppData/Local/Programs/CLion/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/pstl/execution_defs.h
+  C:/Users/Admin/AppData/Local/Programs/CLion/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/pstl/execution_defs.h \
+  C:/Users/Admin/AppData/Local/Programs/CLion/bin/mingw/x86_64-w64-mingw32/include/unistd.h \
+  C:/Users/Admin/AppData/Local/Programs/CLion/bin/mingw/x86_64-w64-mingw32/include/io.h \
+  C:/Users/Admin/AppData/Local/Programs/CLion/bin/mingw/x86_64-w64-mingw32/include/string.h \
+  C:/Users/Admin/AppData/Local/Programs/CLion/bin/mingw/x86_64-w64-mingw32/include/sec_api/string_s.h \
+  C:/Users/Admin/AppData/Local/Programs/CLion/bin/mingw/x86_64-w64-mingw32/include/getopt.h
 
 CMakeFiles/Library_Management.dir/main.cpp.obj: E:/GitKraken/Library_Management/Library-Management/main.cpp \
   C:/Users/Admin/AppData/Local/Programs/CLion/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/iostream \
@@ -990,6 +995,16 @@ C:/Users/Admin/AppData/Local/Programs/CLion/bin/mingw/lib/gcc/x86_64-w64-mingw32
 C:/Users/Admin/AppData/Local/Programs/CLion/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/stl_tempbuf.h:
 
 C:/Users/Admin/AppData/Local/Programs/CLion/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/pstl/execution_defs.h:
+
+C:/Users/Admin/AppData/Local/Programs/CLion/bin/mingw/x86_64-w64-mingw32/include/unistd.h:
+
+C:/Users/Admin/AppData/Local/Programs/CLion/bin/mingw/x86_64-w64-mingw32/include/io.h:
+
+C:/Users/Admin/AppData/Local/Programs/CLion/bin/mingw/x86_64-w64-mingw32/include/string.h:
+
+C:/Users/Admin/AppData/Local/Programs/CLion/bin/mingw/x86_64-w64-mingw32/include/sec_api/string_s.h:
+
+C:/Users/Admin/AppData/Local/Programs/CLion/bin/mingw/x86_64-w64-mingw32/include/getopt.h:
 
 E:/GitKraken/Library_Management/Library-Management/main.cpp:
 

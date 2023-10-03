@@ -6,6 +6,7 @@
 #include <string>
 #include <ctime>
 #include <algorithm>
+#include <unistd.h>
 
 using namespace std;
 
@@ -75,6 +76,9 @@ void Book::displayAllBooks() { //display all the users in the vector
         exit(1);
 
     else {
+        cout << "\t===================================================================" << endl;
+        cout << "\t\t      D I S P L A Y I N G   A L L   B O O K S" << endl;
+        cout << "\t===================================================================" << endl;
         for (auto &i: bookList) {
             cout << "\t\t[" << i.ISBN << "]\n";
             cout << "\tTitle: " << i.title << "\n\tAuthor: " << i.author
@@ -93,8 +97,7 @@ void Book::deleteBook(const string &isbn) {
                 bookList.erase(i);
                 cout << endl << isbn << " has been successfully deleted\n";
                 break;
-            } else
-                cout << "\n\tBook not found";
+            }
         }
     }
 }
@@ -150,9 +153,10 @@ bool Book::stringCompare(const string &str1, const string &str2) {
 }
 
 bool Book::searchBook(const string &title, const string &username) {
+    sleep(3);
     for (const Books &book: bookList) {
         if (stringCompare(book.title, title)) {
-            cout << "\n\nBOOK FOUND: " << book.title << endl;
+            cout << "\t" << book.title << " is still available." << endl;
 
             borrowBook(book.ISBN, book.copies, username); // run the borrowBook function
 
@@ -164,12 +168,12 @@ bool Book::searchBook(const string &title, const string &username) {
 
 void Book::borrowBook(const string &isbn, int copies, const string &username) {
     char ch;
-    cout << "Do you want to borrow? y/n :  ";
+    cout << "\tDo you want to borrow? y/n :  ";
     cin >> ch;
 
     if (ch == 'y' || ch == 'Y') {
         if (copies == 0) {
-            cout << "No Copies Available for this book";
+            cout << "\tNo Copies Available for this book";
         }
 
         if (canBorrowBooks(username)) {
@@ -198,10 +202,13 @@ void Book::borrowBook(const string &isbn, int copies, const string &username) {
             borrow.returnDate = returnDateStr;
 
             // Display the borrowing date and return date
-            cout << "Borrowing Date: " << borrow.borrowDate << endl;
-            cout << "Return Date: " << borrow.returnDate << endl;
+            cout << "\t===================================================================" << endl;
+            cout << "\t\t\t  B O R R O W I N G   D E T A I L S" << endl;
+            cout << "\t===================================================================" << endl;
+            cout << "\tBorrowing Date: " << borrow.borrowDate << endl;
+            cout << "\tReturn Date: " << borrow.returnDate << endl;
 
-            cout << "Confirm borrowing? y/n :  ";
+            cout << "\tConfirm borrowing? y/n :  ";
             cin >> ch;
 
             if (ch == 'y' || ch == 'Y') {
@@ -263,15 +270,15 @@ void Book::borrowBook(const string &isbn, int copies, const string &username) {
                     borrowedBooksList.push_back(borrow);
                     borrowBookFile.close();
 
-                    cout << "Successfully Borrowed a Book!\n\n";
+                    cout << "\tSuccessfully Borrowed a Book!\n\n";
                 } else {
-                    cout << "Error updating the Library file." << endl;
+                    cout << "\tError updating the Library file." << endl;
                 }
             } else {
-                cout << "Borrowing canceled." << endl;
+                cout << "\tBorrowing canceled." << endl;
             }
         } else {
-            cout << "Sorry, you have reached the maximum limit of 5 borrowed books." << endl;
+            cout << "\tSorry, you have reached the maximum limit of 5 borrowed books." << endl;
         }
     }
 
@@ -324,6 +331,9 @@ void Book::showBorrowedBooks(const string &targetUser) {
     string line, user, isbn, borrowDate, returnDate;
 
     cout << "\tSearching for user: " << targetUser << endl;
+    cout << "\t===================================================================" << endl;
+    cout << "\t\t       Y O U R   B O R R O W E D   B O O K S" << endl;
+    cout << "\t===================================================================" << endl;
 
     while (getline(borrowBooksFile, line)) {
         size_t pos = line.find('|');
@@ -347,7 +357,8 @@ void Book::showBorrowedBooks(const string &targetUser) {
                     returnDate = line; // The remaining part is the return date
                     if (user == targetUser) {
                         // Output the book title, borrow date, and return date
-                        cout << "\n\n\t      [" << isbn << "]" << endl;
+
+                        cout << "\n\tISBN: " << isbn << endl;
                         cout << "\tBook Title: " << getTitleByISBN(isbn) << endl;
                         cout << "\tBorrow Date: " << borrowDate << endl;
                         cout << "\tReturn Date: " << returnDate << endl;
@@ -390,6 +401,7 @@ void Book::returnBook(std::string username, string isbn) {
     ifstream borrowBooksFile("borrowedBooks.txt");
     ofstream updatedBorrowBooksFile("borrowedBooks_updated.txt");
     string line, user, bookIsbn, borrowDate, returnDate;
+
 
     while (getline(borrowBooksFile, line)) {
         size_t pos = line.find('|');

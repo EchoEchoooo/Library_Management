@@ -62,10 +62,9 @@ void Admin::deleteUser(string username) {
         for (auto i = usersList.begin(); i != usersList.end(); ++i) {
             if (i->username == username) {
                 usersList.erase(i);
-                cout << endl << username << " has been successfully deleted\n";
+                cout << "\n" << username << " has been successfully deleted\n";
                 break;
-            } else
-                cout << "\n\tUser not found";
+            }
         }
     }
 }

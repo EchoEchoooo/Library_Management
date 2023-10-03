@@ -1,6 +1,9 @@
-JuanDelaCruz|password123|123
+Juan|password123|123
 Jane|user123|123
 John|test123|123
-q|qweqwe|123
-test|test123|123
+tests|test123|12345
 test2|test123|123
+123|123|123456
+1234|1234|123456
+keka|pass123|12345
+testttt|1234|12345
