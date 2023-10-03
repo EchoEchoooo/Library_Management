@@ -156,7 +156,7 @@ bool Book::searchBook(const string &title, const string &username) {
     sleep(3);
     for (const Books &book: bookList) {
         if (stringCompare(book.title, title)) {
-            cout << "\t" << book.title << " is still available." << endl;
+            cout << "\t" << book.title << " found." << endl;
 
             borrowBook(book.ISBN, book.copies, username); // run the borrowBook function
 
@@ -174,6 +174,7 @@ void Book::borrowBook(const string &isbn, int copies, const string &username) {
     if (ch == 'y' || ch == 'Y') {
         if (copies == 0) {
             cout << "\tNo Copies Available for this book";
+            return;
         }
 
         if (canBorrowBooks(username)) {
